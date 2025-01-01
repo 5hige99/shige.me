@@ -1,6 +1,6 @@
 ---
 title: "Astroで個人サイト作った"
-date: 2024-01-01
+date: 2025-01-01
 tags: ["Astro"]
 description: "Astroを使って個人ブログを作ったのでテスト投稿兼ねて記事を書きました。"
 ---
