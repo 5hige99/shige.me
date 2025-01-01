@@ -1,0 +1,52 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ProjectCard from '../../components/Work/WorkCard.astro';
+
+const projects = [
+  {
+    title: "shige's Portfolio",
+    description: "個人のポートフォリオサイト。Astroを使用して、高速でモダンな静的サイトを構築。ブログ機能、レスポンシブデザインなどを実装。",
+    technologies: ["Astro", "TypeScript", "Markdown", "CSS"],
+    imageUrl: "/work/portfolio/shige.me.png",
+    projectUrl: "https://shige.me",
+    githubUrl: "https://github.com/5hige99/shige.me"
+  }
+];
+---
+
+<Layout title="Work">
+  <main>
+    <h1>Works</h1>
+    <div class="projects">
+      {projects.map((project) => (
+        <ProjectCard {...project} />
+      ))}
+    </div>
+  </main>
+</Layout>
+
+<style>
+	main {
+	  margin: auto;
+	  padding: 2rem 2rem 2rem;
+	  max-width: 1200px;
+	}
+  
+	h1 {
+	  font-size: 2.5rem;
+	  margin-bottom: 2rem;
+	  text-align: center;
+	}
+  
+	.projects {
+	  display: grid;
+	  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	  gap: 2rem;
+	}
+  
+	@media (min-width: 768px) {
+	  .projects {
+		grid-template-columns: repeat(2, 1fr);
+	  }
+	}
+  </style>

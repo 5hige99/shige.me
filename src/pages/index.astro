@@ -1,11 +1,65 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import ProfileCard from '../components/Home/ProfileCard.astro';
+import LinkCard from '../components/Home/LinkCard.astro';
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="shige's Portfolio">
+  <main>
+    <div class="grid">
+      <ProfileCard />
+      
+      <div class="links">
+        <LinkCard 
+          title="＠5hige99" 
+          href="https://x.com/5hige99" 
+          icon="/x-icon.svg"
+        />
+        <LinkCard 
+          title="@5hige99" 
+          href="https://github.com/5hige99" 
+          icon="/github-icon.svg"
+        />
+        <LinkCard 
+          title="@5hige99" 
+          href="https://zenn.dev/5hige99" 
+          icon="/zenn-icon.svg"
+        />
+        <LinkCard 
+          title="@5hige99" 
+          href="https://sizu.me/5hige99" 
+          icon="/sizume-icon.png"
+        />
+      </div>
+    </div>
+  </main>
 </Layout>
+
+<style>
+	main {
+	  margin: auto;
+	  padding: 3rem 2rem;
+	  max-width: 1200px;
+	  min-height: calc(100vh - 8rem); /* ナビゲーションとフッターの高さを考慮 */
+	  display: flex;
+	  align-items: center;
+	}
+  
+	.grid {
+	  width: 100%;
+	  display: grid;
+	  gap: 2rem;
+	  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	}
+  
+	.links {
+	  display: grid;
+	  gap: 1rem;
+	}
+  
+	@media (min-width: 768px) {
+	  .grid {
+		grid-template-columns: 1fr 1fr;
+	  }
+	}
+  </style>

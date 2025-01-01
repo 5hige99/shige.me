@@ -1,0 +1,49 @@
+---
+interface Props {
+  title: string;
+  href: string;
+  icon?: string;
+}
+
+const { title, href, icon } = Astro.props;
+---
+<a href={href} class="link-card">
+  {icon && <img src={icon} alt={title} class="icon" />}
+  <span class="title">{title}</span>
+  <span class="arrow">→</span>
+</a>
+
+<style>
+  .link-card {
+    display: flex;
+    align-items: center;
+    padding: 1.25rem;
+    background: white;
+    border-radius: 1rem;
+    text-decoration: none;
+    color: var(--text-color);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    transition: transform 0.2s;
+  }
+
+  .link-card:hover {
+    transform: translateY(-2px);
+  }
+
+  .icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 0.75rem;
+    object-fit: contain;
+  }
+
+  .title {
+    font-size: 1.125rem;
+    font-weight: 500;
+  }
+
+  .arrow {
+    margin-left: auto;
+    font-size: 1.125rem;
+  }
+</style>

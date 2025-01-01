@@ -1,0 +1,83 @@
+---
+import HamburgerButton from './HamburgerButton.astro';
+---
+
+<nav>
+  <div class="nav-content">
+    <HamburgerButton />
+    <div class="nav-menu" id="nav-menu">
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/blog">Blog</a>
+        <a href="/work">Work</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<script>
+  const hamburgerButton = document.getElementById('hamburger-button');
+  const navMenu = document.getElementById('nav-menu');
+
+  hamburgerButton?.addEventListener('click', () => {
+    hamburgerButton.classList.toggle('active');
+    navMenu?.classList.toggle('active');
+  });
+</script>
+
+<style>
+  nav {
+    padding: 1rem;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    background: var(--background-color);
+    z-index: 100;
+  }
+
+  .nav-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  .hamburger-container {
+    position: relative;
+    z-index: 200;
+  }
+
+  .nav-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    height: 100vh;
+    width: 300px;
+    background: var(--background-color);
+    padding: 6rem 2rem 2rem;
+    transition: right 0.3s ease;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .nav-menu.active {
+    right: 0;
+  }
+
+  .nav-links {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .nav-links a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.2rem;
+  }
+
+  .nav-links a:hover {
+    color: var(--primary-color);
+  }
+</style>

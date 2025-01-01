@@ -2,6 +2,7 @@
   "name": "shige.me",
   "type": "module",
   "version": "0.0.1",
+  "private": true,
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
@@ -9,6 +10,7 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/rss": "^4.0.10",
     "astro": "^5.1.1"
   }
 }

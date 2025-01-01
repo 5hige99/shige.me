@@ -1,0 +1,79 @@
+---
+interface Props {
+  title: string;
+  date: Date;
+  tags: string[];
+  url: string;
+  description?: string;
+}
+
+const { title, date, tags, url, description } = Astro.props;
+const formattedDate = new Date(date).toLocaleDateString('ja-JP', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+---
+
+<article class="blog-post">
+  <a href={url}>
+    <h2>{title}</h2>
+  </a>
+  <div class="metadata">
+    <time datetime={date.toISOString()}>{formattedDate}</time>
+    <div class="tags">
+      {tags.map((tag) => (
+        <span class="tag">{tag}</span>
+      ))}
+    </div>
+  </div>
+  {description && <p class="description">{description}</p>}
+</article>
+
+<style>
+  .blog-post {
+    padding: 1.5rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.5rem;
+    transition: transform 0.2s;
+  }
+
+  .blog-post:hover {
+    transform: translateY(-2px);
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  .metadata {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    color: #4a5568;
+  }
+
+  .tags {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .tag {
+    background: #e2e8f0;
+    padding: 0.2rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.8rem;
+  }
+
+  .description {
+    color: #4a5568;
+    line-height: 1.6;
+  }
+</style>
