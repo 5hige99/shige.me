@@ -20,7 +20,11 @@ const formattedDate = new Date(post.data.date).toLocaleDateString('ja-JP', {
 });
 ---
 
-<Layout title={post.data.title}>
+<Layout 
+  title={post.data.title}
+  description={post.data.description}
+  type="article"
+>
   <article class="blog-content">
     <header>
       <h1>{post.data.title}</h1>

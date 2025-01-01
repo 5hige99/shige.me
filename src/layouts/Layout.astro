@@ -1,68 +1,73 @@
 ---
+import Meta from '../components/Meta.astro';
 import Navigation from '../components/Navigation/Navigation.astro';
+
 interface Props {
-	title: string;
+  title: string;
+  description?: string;
+  image?: string;
+  type?: 'website' | 'article';
 }
 
-const { title } = Astro.props;
+const { title, description, image, type } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="ja">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Developer Portfolio and Blog" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/icon.png" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-	</head>
-	<body>
-		<header>
-			<Navigation />
-		</header>
-		<main class="content">
-			<slot />
-		</main>
-		<footer>
-			<p>&copy; {new Date().getFullYear()} shige</p>
-		</footer>
-	</body>
+  <head>
+    <Meta 
+      title={title}
+      description={description}
+      image={image}
+      type={type}
+    />
+  </head>
+  <body>
+    <header>
+      <Navigation />
+    </header>
+    <main class="content">
+      <slot />
+    </main>
+    <footer>
+      <p>&copy; {new Date().getFullYear()} shige</p>
+    </footer>
+  </body>
 </html>
 
 <style is:global>
-	:root {
-		--primary-color: #3182ce;
-		--text-color: #2d3748;
-		--background-color: #ffffff;
-	}
-	
-	* {
-		margin: 0;
-		padding: 0;
-		box-sizing: border-box;
-	}
+  :root {
+    --primary-color: #3182ce;
+    --text-color: #2d3748;
+    --background-color: #ffffff;
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
-	html {
-		font-family: system-ui, sans-serif;
-		background: var(--background-color);
-		color: var(--text-color);
-	}
+  html {
+    font-family: system-ui, sans-serif;
+    background: var(--background-color);
+    color: var(--text-color);
+  }
 
-	body {
-		min-height: 100vh;
-		display: flex;
-		flex-direction: column;
-	}
+  body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
 
-	.content {
-		margin-top: 4rem;
-		flex: 1;
-	}
+  .content {
+    margin-top: 4rem;
+    flex: 1;
+  }
 
-	footer {
-		padding: 2rem;
-		text-align: center;
-		border-top: 1px solid #e2e8f0;
-	}
+  footer {
+    padding: 2rem;
+    text-align: center;
+    border-top: 1px solid #e2e8f0;
+  }
 </style>
