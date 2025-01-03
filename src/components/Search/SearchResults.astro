@@ -1,0 +1,89 @@
+---
+---
+<div class="search-results-container">
+    <div id="search-results" class="search-results">
+      <!-- Results will be populated by JavaScript -->
+    </div>
+  </div>
+  
+  <style>
+    .search-results-container {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+  
+    .search-results {
+      width: 100%;
+      max-width: 600px;
+      margin-top: 2rem;
+      background: white;
+      border-radius: 0.5rem;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+  
+    :global(.result-item) {
+      padding: 1.25rem;
+      border-bottom: 1px solid #e2e8f0;
+    }
+  
+    :global(.result-item:last-child) {
+      border-bottom: none;
+    }
+  
+    :global(.result-title) {
+      font-size: 1.25rem;
+      color: var(--text-color);
+      text-decoration: none;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+  
+    :global(.result-title:hover) {
+      color: var(--primary-color);
+    }
+  
+    :global(.result-description) {
+      color: #4a5568;
+      font-size: 0.875rem;
+      line-height: 1.5;
+    }
+  </style>
+  
+  <script>
+    import type { CollectionEntry } from 'astro:content';
+  
+    let posts: CollectionEntry<'blog'>[] = [];
+  
+    // Fetch posts data
+    async function fetchPosts() {
+      const response = await fetch('/api/posts.json');
+      posts = await response.json();
+    }
+  
+    fetchPosts();
+  
+    // Search functionality
+    document.addEventListener('search', ((e: CustomEvent) => {
+      const query = e.detail.query.toLowerCase();
+      const resultsContainer = document.getElementById('search-results');
+      
+      if (!resultsContainer || !query) {
+        if (resultsContainer) resultsContainer.innerHTML = '';
+        return;
+      }
+  
+      const filteredPosts = posts.filter(post => 
+        post.data.title.toLowerCase().includes(query) ||
+        post.data.description?.toLowerCase().includes(query) ||
+        post.data.tags.some(tag => tag.toLowerCase().includes(query))
+      );
+  
+      resultsContainer.innerHTML = filteredPosts.map(post => `
+        <div class="result-item">
+          <a href="/blog/${post.slug}" class="result-title">${post.data.title}</a>
+          ${post.data.description ? `<p class="result-description">${post.data.description}</p>` : ''}
+        </div>
+      `).join('');
+    }) as EventListener);
+  </script>

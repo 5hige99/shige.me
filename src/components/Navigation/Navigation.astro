@@ -1,10 +1,15 @@
 ---
 import HamburgerButton from './HamburgerButton.astro';
+import SearchIcon from './SearchIcon.astro';
 ---
 
 <nav>
   <div class="nav-content">
-    <HamburgerButton />
+    <div class="spacer"></div>
+    <div class="nav-actions">
+      <SearchIcon />
+      <HamburgerButton />
+    </div>
     <div class="nav-menu" id="nav-menu">
       <div class="nav-links">
         <a href="/">Home</a>
@@ -43,8 +48,9 @@ import HamburgerButton from './HamburgerButton.astro';
     align-items: center;
   }
 
-  .hamburger-container {
-    position: relative;
+  .nav-actions {
+    display: flex;
+    align-items: center;
     z-index: 200;
   }
 
@@ -68,6 +74,7 @@ import HamburgerButton from './HamburgerButton.astro';
     display: flex;
     flex-direction: column;
     gap: 2rem;
+    align-items: center;
   }
 
   .nav-links a {

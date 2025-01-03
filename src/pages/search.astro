@@ -1,0 +1,29 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SearchInput from '../components/Search/SearchInput.astro';
+import PopularTags from '../components/Search/PopularTags.astro';
+import SearchResults from '../components/Search/SearchResults.astro';
+---
+
+<Layout title="検索｜shige">
+  <div class="search-page">
+    <h1>記事を検索</h1>
+    <SearchInput />
+    <PopularTags />
+    <SearchResults />
+  </div>
+</Layout>
+
+<style>
+  .search-page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+</style>
