@@ -28,7 +28,7 @@ const sortedPosts = posts.sort((a, b) => b.data.date.getTime() - a.data.date.get
   main {
     margin: auto;
     padding: 2rem;
-    max-width: 1200px;
+    max-width: 800px;
   }
 
   h1 {
@@ -38,8 +38,8 @@ const sortedPosts = posts.sort((a, b) => b.data.date.getTime() - a.data.date.get
   }
 
   .posts {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    display: flex;
+    flex-direction: column;
     gap: 2rem;
   }
 </style>
