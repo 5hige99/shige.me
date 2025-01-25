@@ -17,7 +17,6 @@ const sortedPosts = posts.sort((a, b) => b.data.date.getTime() - a.data.date.get
           date={post.data.date}
           tags={post.data.tags}
           url={`/blog/${post.slug}`}
-          description={post.data.description}
         />
       ))}
     </div>
