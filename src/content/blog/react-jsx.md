@@ -2,7 +2,6 @@
 title: "React の JSX はなぜ親要素で囲む必要があるのか"
 date: 2025-01-04
 tags: ["React"]
-description: "ReactのJSXはなぜ親要素で囲む必要があるのか調べてみた"
 ---
 ## はじめに
 Reactを書いていると複数の要素がある場合は親要素で囲むように書くことを無意識的にできているが、なぜ親要素で囲む必要があるのかを説明できるか？って言われた時に「あれ？なんでだっけ？」と思ったのでなぜなのかを調べてみました。
@@ -10,7 +9,7 @@ Reactを書いていると複数の要素がある場合は親要素で囲むよ
 ### 1. **JavaScript の構文ルール**
 JSX はコンパイル時に JavaScript に変換されます。次のような JSXは
 
-```jsx
+```javascript
 <div>Hello</div>
 <div>World</div>
 ```
@@ -27,7 +26,7 @@ React.createElement('div', null, 'World');
 ### 2. **React のレンダリングロジック**
 React のコンポーネントは **単一の要素を返すこと** が期待されています。
 
-```jsx
+```javascript
 function App() {
   return (
     <div>Hello</div>
@@ -41,7 +40,7 @@ function App() {
 ### 3. **親要素を作る方法**
 JSX では親要素で囲むことでこの問題を解決します。例えば、次のように書きます。
 
-```jsx
+```javascript
 function App() {
   return (
     <div>
@@ -55,7 +54,7 @@ function App() {
 ### 4. **Fragment の利用**
 親要素を作るたびに余計な `<div>` を追加したくない場合、React の **Fragment** を利用できます。
 
-```jsx
+```javascript
 function App() {
   return (
     <>
