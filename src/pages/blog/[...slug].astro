@@ -1,16 +1,16 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, type CollectionEntry } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
-  return posts.map((post) => ({
+  return posts.map((post: CollectionEntry<'blog'>) => ({
     params: { slug: post.slug },
     props: { post },
   }));
 }
 
-const { post } = Astro.props;
+const { post }: { post: CollectionEntry<'blog'> } = Astro.props;
 const { Content } = await post.render();
 
 const formattedDate = new Date(post.data.date).toLocaleDateString('ja-JP', {
@@ -85,9 +85,9 @@ const formattedDate = new Date(post.data.date).toLocaleDateString('ja-JP', {
     margin: 2rem 0 1rem;
   }
 
-  .content :global(p) {
+  /* .content :global(p) {
     margin-bottom: 1.5rem;
-  }
+  } */
 
   .content :global(ul), .content :global(ol) {
     margin: 1.5rem 0;

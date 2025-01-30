@@ -1,0 +1,25 @@
+.note, .warning, .tip {
+  display: flex;
+  padding: 1rem;
+  margin: 1.5rem 0 2rem;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  min-height: 3.5rem;
+  white-space: pre-wrap;
+  width: 100%;
+}
+
+.note {
+  background-color: #f6f8fa;
+  border-left: 4px solid #0366d6;
+}
+
+.warning {
+  background-color: #fff5f5;
+  border-left: 4px solid #e53e3e;
+}
+
+.tip {
+  background-color: #f0fff4;
+  border-left: 4px solid #38a169;
+} 
